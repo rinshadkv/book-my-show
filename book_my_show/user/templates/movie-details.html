@@ -1,0 +1,88 @@
+{% extends 'user-master.html' %}
+{% load static %}
+{% block content%}
+
+<div>
+  <!-- movie poster  -->
+  <div class="movie-poster"
+    style="height: 500px;background-image: url({{data.Movie_poster.url}} );background-repeat: no-repeat;background-size: 100% 100%;">
+    <div class="row">
+    <div class="col-lg-1">
+     </div>
+      
+      <div class="col-lg-4" >
+        <div style="margin-top: 30px">
+          <h1 style="color: white;">{{data.Movie_name|upper}}</h1><br>
+          <h3> <i class="fa-solid fa-heart  fa-1x" style="color: rgb(208, 18, 18);"></i><span style="color: white"> 14.k
+              people likes this movie</span></h3>
+
+          <button class="btn btn-dark">
+            <h4 style="color: white">rate now & review</h4>
+          </button>
+          <br><br>
+
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-light">{{data.Languages  }}</button>
+            
+          </div>
+
+          <br>
+          <div style="margin-top: 10px">
+            <button style="border-radius: 20px" class="btn btn-light">{{data.Gener}}</button>
+          </div>
+          <div>
+          <h6 style="color: white">
+           {{data.Movie_duaration}} <span> from {{data.Release_date|date:"M d, Y"}}</span>
+          </h6 style="color: white">
+        </div>
+        <div>
+          <a href="{{data.Movie_trailor}}" class="btn btn-success">watch trailor</a>
+
+            {% if 'user_id' in request.session %}
+          <a class="btn btn-danger" href="{% url 'buy-tickets' data.id %}">BOOK NOW</a>
+          {% else %}
+          <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#login-modal">BOOK NOW</button>
+          {% endif %}
+        </div>
+
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+  <!-- about  -->
+
+<div class="row">
+<div class="col-lg-1"></div>
+<div class="col-lg-9">
+  <h3>About the movie</h3>
+  
+  <p>
+   {{data.About_movie}}</p>
+  <hr>
+
+  <!-- <h3>cast & crew</h3>
+
+  <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp" class="rounded-circle mb-3" style="width: 150px;"
+  alt="Avatar" />
+
+<h5 class="mb-2"><strong>John Doe</strong></h5>
+<p class="text-muted">Web designer</p> -->
+</div>
+
+</div>
+
+
+
+
+
+</div>
+{% endblock %}

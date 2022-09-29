@@ -1,0 +1,758 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>book ticket</title>
+  <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+      integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+      integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/8ddc754e9e.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"
+      integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="{% static 'javascript/buy-tickets.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/buy-tickets.css' %}">
+</head>
+<body>
+  
+
+
+<div>
+  
+
+<!-- Button trigger modal -->
+<nav class="navbar navbar-dark bg-dark" style="height: 100px;">
+  <div class="container-fluid">
+    <div>
+    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/5.webp" class="rounded-3" style="width: 90px;"
+  alt="Avatar" /></div>
+  <div style="color: white;" class="mx-auto"> 
+    <h6>avatar</h6>
+  </div>
+   
+  </div>
+</nav>
+  <!-- Modal -->
+  <form action="{% url 'book-ticket' %}" method="POST">
+    {% csrf_token %}
+  <div class="modal fade" id="select-date-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered modal-fullscreen-md-down">
+      <div class="modal-content">
+        
+        <div class="modal-body">
+           
+<div>
+    <label for="show-date">CHOOSE SHOW DATE</label><br>
+    <input type="date" id="show-date" class="form-control " name="show_date"  required>
+</div> <br>
+<div>
+    <p>select show time</p>
+
+    <select name="show_time" class="form-select" id="show-time" aria-label="Default select example"  required>
+        <option selected>choose show time</option>
+        <option value="10.00 am">10.00 am</option>
+        <option value="2.00 pm">2.00 pm</option>
+        <option value="6.00 pm">6.00 pm</option>
+        <option value="10.00pm">10.00 pm</option>
+      </select>
+</div>
+<br>
+
+
+<p>select seat category</p>
+<div>
+ 
+  <input type="radio" class="btn-check" name="seat_category" id="option1" autocomplete="off"  value="standard"/>
+  <label class="btn btn-outline-success" for="option1">Standard <span style="color: red;">Rs: 150.00</span></label>
+
+  <input type="radio" class="btn-check" name="seat_category" id="option2" autocomplete="off" value="premium" />
+  <label class="btn btn-outline-success" for="option2">Premium 
+ <span style="color: red;">Rs: 250.00</span></label>
+
+</div>
+<br>
+<p> select number of  seats</p>
+<div>
+  
+  <input type="radio" class="btn-check" name="number-of-seats" id="1-seat" autocomplete="off" checked value="1"/>
+  <label class="btn btn-outline-danger" for="1-seat">1</label>
+
+  <input type="radio" class="btn-check" name="number-of-seats" id="2-seat" autocomplete="off" value="2" />
+  <label class="btn btn-outline-danger" for="2-seat">2</label>
+
+  <input type="radio" class="btn-check" name="number-of-seats" id="3-seat" autocomplete="off"  value="3"/>
+  <label class="btn btn-outline-danger" for="3-seat">3</label>
+
+  <input type="radio" class="btn-check" name="number-of-seats" id="4-seat" autocomplete="off" value="4" />
+  <label class="btn btn-outline-danger" for="4-seat">4</label>
+  <input type="radio" class="btn-check" name="number-of-seats" id="5-seat" autocomplete="off"  value="5"/>
+  <label class="btn btn-outline-danger" for="5-seat">5</label>
+
+  <input type="radio" class="btn-check" name="number-of-seats" id="6-seat" autocomplete="off" value="6" />
+  <label class="btn btn-outline-danger" for="6-seat">6</label>
+  <input type="radio" class="btn-check" name="number-of-seats" id="7-seat" autocomplete="off"  value="7"/>
+  <label class="btn btn-outline-danger" for="7-seat">7</label>
+
+  <input type="radio" class="btn-check" name="number-of-seats" id="8-seat" autocomplete="off" value="8" />
+  <label class="btn btn-outline-danger" for="8-seat">8</label>
+<input type="radio" class="btn-check" name="number-of-seats" id="9-seat" autocomplete="off"  value="9"/>
+  <label class="btn btn-outline-danger" for="9-seat">9</label>
+
+  <input type="radio" class="btn-check" name="number-of-seats" id="10-seat" autocomplete="off" value="10" />
+  <label class="btn btn-outline-danger" for="10-seat">10</label>
+  <input type="text" value="{{data.Movie_name}}" id="moviename" name="movie_name" hidden>
+<input type="number" id="movie_id"  name="movie_id" hidden value="{{data.id}}">
+
+
+
+
+
+</div>
+           
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark"  id="continue-btn">continue booking</button>
+          <!-- <button type="button" class="btn btn-primary" id="continue-btn"></button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<!-- theater seat  -->
+  <div class="theatre">
+    <div class="screen-side">
+      <div class="screen">Screen</div>
+      
+    </div>
+    <div class="exit exit--front">
+    </div>
+    <div style="text-align: center;margin-top: 100px;">
+      <small>standard</small>
+ 
+     
+      
+      <hr>
+    
+    </div>
+   
+    <ol class="cabin" >
+      <!-- ROW A -->
+      <li class="row row--1">
+        <ol class="seats" type="A" >
+          <li class="seat standard"  >
+            <input type="checkbox" id="1A" value="A1" name="selected_seat" />
+            <label for="1A"class="standard-seat">A1</label>
+          </li>
+          
+          <li class="seat standard">
+            <input type="checkbox" id="A2" value="A2"name="selected_seat"/>
+            <label for="A2" class="standard-seat">A2</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="A3" value="A3"/>
+            <label for="A3"class="standard-seat">A3</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox"  id="A4" value="A4"/>
+            <label for="A4"class="standard-seat">A4</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="A5" value="A5"/>
+            <label for="A5"class="standard-seat">A5</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="A6" value="A6"/>
+            <label for="A6"class="standard-seat">A6</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="A7" value="A7"/>
+            <label for="A7"class="standard-seat">A7</label>
+          </li><li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="A8" value="A8"/>
+            <label for="A8"class="standard-seat">A8</label>
+          </li><li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="A9" value="A9"/>
+            <label for="A9" class="standard-seat">A9</label>
+          </li><li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="A10" value="A10"/>
+            <label for="A10"class="standard-seat">A10</label>
+          </li>
+        </ol>
+      </li>
+      <!-- ROW B -->
+      <li class="row row--3">
+        <ol class="seats" type="A">
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="B1" value="B1"/>
+            <label class="standard-seat" for="B1">B1</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="B2" value="B2"/>
+            <label class="standard-seat" for="B2">B2</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="B3" value="B3"/>
+            <label class="standard-seat" for="B3">B3</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="B4" value="B4"/>
+            <label class="standard-seat" for="B4">B4</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="B5" value="B5"/>
+            <label class="standard-seat" for="B5">B5</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="B6" value="B6"/>
+            <label class="standard-seat" for="B6">B6</label>
+            <li class="seat standard">
+              <input name="selected_seat" type="checkbox" id="B7"value="B7" />
+              <label class="standard-seat" for="B7">B7</label>
+            </li><li class="seat standard">
+              <input name="selected_seat" type="checkbox" id="B8" value="B8"/>
+              <label class="standard-seat" for="B8">B8</label>
+            </li><li class="seat standard">
+              <input name="selected_seat" type="checkbox" id="B9" value="B9" />
+              <label class="standard-seat" for="B9">B9</label>
+            </li><li class="seat standard">
+              <input name="selected_seat" type="checkbox" id="B10" value="B10"/>
+              <label class="standard-seat" for="B10">B10</label>
+            </li>
+          </li>
+        </ol>
+      </li>
+      <!-- ROW C -->
+      <li class="row row--4">
+        <ol class="seats" type="A">
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="C1" value="C1"/>
+            <label class="standard-seat" for="C1">C1</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="C2" value="C2"/>
+            <label class="standard-seat" for="C2">C2</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="C3" value="C3"/>
+            <label class="standard-seat" for="C3">C3</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="C4" value="C4"/>
+            <label class="standard-seat" for="C4">C4</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="C5" value="C5"/>
+            <label class="standard-seat" for="C5">C5</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="C6" value="C6"/>
+            <label class="standard-seat" for="C6">C6</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="C7" value="C7"/>
+            <label class="standard-seat" for="C7">C7</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="C8" value="C8"/>
+            <label class="standard-seat" for="C8">C8</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="C9" value="C9"/>
+            <label class="standard-seat" for="C9">C9</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="C10" value="C10"/>
+            <label class="standard-seat" for="C10">C10</label>
+          </li>
+          
+        </ol>
+      </li>
+      <!-- ROW D -->
+      <li class="row row--5">
+        <ol class="seats" type="A">
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="D1" value="D1"/>
+            <label class="standard-seat" for="D1">D1</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="D2" value="D1"/>
+            <label class="standard-seat" for="D2">D2</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="D3" value="D3"/>
+            <label class="standard-seat" for="D3">D3</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="D4" value="D4"/>
+            <label class="standard-seat" for="D4">D4</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="D5" value="D5"/>
+            <label class="standard-seat" for="D5">D5</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="D6" value="D6"/>
+            <label class="standard-seat" for="D6">D6</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="D7" value="D7"/>
+            <label class="standard-seat" for="D7">D7</label>
+          </li><li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="D8" value="D8"/>
+            <label class="standard-seat" for="D8">D8</label>
+          </li><li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="D9" value="D9"/>
+            <label class="standard-seat" for="D9">D9</label>
+          </li><li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="D10" value="D10"/>
+            <label class="standard-seat" for="D10">D10</label>
+          </li>
+        </ol>
+      </li>
+      <!-- ROW E  -->
+      <li class="row row--6">
+        <ol class="seats" type="A">
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="E1" value="E1"/>
+            <label class="standard-seat" for="E1">E1</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="E2" value="E2"/>
+            <label class="standard-seat" for="E2">E2</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="E3" value="E3"/>
+            <label class="standard-seat" for="E3">E3</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="E4" value="E4"/>
+            <label class="standard-seat" for="E4">E4</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="E5" value="E5"/>
+            <label class="standard-seat" for="E5">E5</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="E6" value="E6"/>
+            <label class="standard-seat" for="E6">E6</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="E7" value="E7"/>
+            <label class="standard-seat" for="E7">E7</label>
+          </li><li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="E8" value="E8"/>
+            <label class="standard-seat" for="E8">E8</label>
+          </li><li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="E9" value="E9"/>
+            <label class="standard-seat" for="E9">E9</label>
+          </li><li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="E10" value="E10"/>
+            <label class="standard-seat" for="E10">E10</label>
+          </li>
+        </ol>
+      </li>
+      <!-- ROW F -->
+      <li class="row row--7">
+        <ol class="seats" type="A">
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="F1" value="F1"/>
+            <label class="standard-seat" for="F1">F1</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="F2" value="F2"/>
+            <label class="standard-seat" for="F2">F2</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="F3" value="F3"/>
+            <label class="standard-seat" for="F3">F3</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="F4" value="F4"/>
+            <label class="standard-seat" for="F4">F4</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="F5" value="F5"/>
+            <label class="standard-seat" for="F5">F5</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="F6" value="F6"/>
+            <label class="standard-seat" for="F6">F6</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="F7" value="F7"/>
+            <label class="standard-seat" for="F7">F7</label>
+          </li><li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="F8" value="F8"/>
+            <label class="standard-seat" for="F8">F8</label>
+          </li><li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="F9" value="F9"/>
+            <label class="standard-seat" for="F9">F9</label>
+          </li><li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="F10" value="F10"/>
+            <label class="standard-seat" for="F10">F10</label>
+          </li>
+        </ol>
+      </li>
+      <!-- ROW G -->
+      <li class="row row--8">
+        <ol class="seats" type="A">
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="G1" value="G1"/>
+            <label class="standard-seat" for="G1">G1</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="G2" value="G2"/>
+            <label class="standard-seat" for="G2">G2</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="G3" value="G3"/>
+            <label class="standard-seat" for="G3">G3</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="G4" value="G4"/>
+            <label class="standard-seat" for="G4">G4</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="G5" value="G5"/>
+            <label class="standard-seat" for="G5">G5</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="G6" value="G6"/>
+            <label class="standard-seat" for="G6">G6</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="G7" value="G7"/>
+            <label class="standard-seat" for="G7">G7</label>
+          </li><li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="G8" value="G8"/>
+            <label class="standard-seat" for="G8">G8</label>
+          </li><li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="G9" value="G9"/>
+            <label class="standard-seat" for="G9">G9</label>
+          </li><li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="G10" value="G10"/>
+            <label class="standard-seat" for="G10">G10</label>
+          </li>
+        </ol>
+      </li>
+      <!-- ROW H  -->
+      <li class="row row--9">
+        <ol class="seats" type="A">
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="H1" value="H1"/>
+            <label class="standard-seat" for="H1">H1</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="H2" value="H2"/>
+            <label class="standard-seat" for="H2">H2</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="H3" value="H3"/>
+            <label class="standard-seat" for="H3">H3</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="H4" value="H4"/>
+            <label class="standard-seat" for="H4">H4</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="H5" value="H5"/>
+            <label class="standard-seat" for="H5">H5</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="H6" value="H6"/>
+            <label class="standard-seat" for="H6">H6</label>
+          </li>
+          <li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="H7" value="H7"/>
+            <label class="standard-seat" for="H7">H7</label>
+          </li><li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="H8" value="H8"/>
+            <label class="standard-seat" for="H8">H8</label>
+          </li><li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="H9" value="H9"/>
+            <label class="standard-seat" for="H9">H9</label>
+          </li><li class="seat standard">
+            <input name="selected_seat" type="checkbox" id="H10" value="H10"/>
+            <label class="standard-seat" for="H10">H10</label>
+          </li>
+        </ol>
+      </li>
+     <br>
+     <hr>
+     <div style="text-align: center;">
+     <small>premium</small>
+    </div>
+      <li class="row row--10">
+        <ol class="seats" type="A">
+          <li class="seat premium">
+            <input name="selected_seat" type="checkbox" id="PA1" value="PA1"/>
+            <label class="premium-seat" for="PA1">PA4</label>
+          </li> 
+          <li class="seat premium">
+            <input name="selected_seat" type="checkbox" id="PA2" value="PA2" />
+            <label class="premium-seat" for="PA2">PA2</label>
+          </li> 
+          <li class="seat premium">
+            <input name="selected_seat" type="checkbox" id="PA3" value="PA3"/>
+            <label class="premium-seat" for="PA3">PA3</label>
+          </li>
+          
+          <li class="seat premium">
+            <input name="selected_seat" type="checkbox" id="PA4" value="PA4"/>
+            <label class="premium-seat" for="PA4">PA4</label>
+          </li>
+          <li class="seat premium">
+            <input name="selected_seat" type="checkbox" id="PA5" value="PA5"/>
+            <label class="premium-seat" for="PA5">PA5</label>
+          </li>
+          <li class="seat premium">
+            <input name="selected_seat" type="checkbox" id="PA6" value="PA6"/>
+            <label class="premium-seat" for="PA6">PA6</label>
+          </li>
+          <li class="seat premium">
+            <input name="selected_seat" type="checkbox" id="PA7" value="PA7"/>
+            <label class="premium-seat" for="PA7">PA7</label>
+          </li>
+          <li class="seat premium">
+            <input name="selected_seat" type="checkbox" id="PA8" value="PA8"/>
+            <label class="premium-seat" for="PA8">PA8</label>
+          </li>
+          <li class="seat premium">
+            <input name="selected_seat" type="checkbox" id="PA9" value="PA9"/>
+            <label class="premium-seat" for="PA9">PA9</label>
+          </li>
+          <li class="seat premium">
+            <input name="selected_seat" type="checkbox" id="PA10" value="PA10"/>
+            <label class="premium-seat" for="PA10">PA10</label>
+          </li>
+        </ol>
+      </li>
+      <li class="row row--10">
+        <ol class="seats" type="A">
+          <li class="seat premium">
+            <input name="selected_seat" type="checkbox" id="PB1" value="PB1"/>
+            <label class="premium-seat" for="PB1">PB1</label>
+          </li>
+          <li class="seat premium">
+            <input name="selected_seat" type="checkbox" id="PB2" value="PB2"/>
+            <label class="premium-seat" for="PB2">PB2</label>
+          </li>
+          <li class="seat premium">
+            <input name="selected_seat" type="checkbox" id="PB3" value="PB3"/>
+            <label class="premium-seat" for="PB3">PB3</label>
+          </li>
+          <li class="seat premium">
+            <input name="selected_seat" type="checkbox" id="PB4" value="PB4"/>
+            <label class="premium-seat" for="PB4">PB4</label>
+          </li>
+          <li class="seat premium">
+            <input name="selected_seat" type="checkbox" id="PB5" value="PB5"/>
+            <label class="premium-seat" for="PB5">PB5</label>
+          </li>
+          <li class="seat premium">
+            <input name="selected_seat" type="checkbox" id="PB6" value="PB6"/>
+            <label class="premium-seat" for="PB6">PB6</label>
+          </li>
+          <li class="seat premium">
+            <input name="selected_seat" type="checkbox" id="PB7" value="PB7"/>
+            <label class="premium-seat" for="PB7">PB7</label>
+          </li><li class="seat premium">
+            <input name="selected_seat" type="checkbox" id="PB8" value="PB8"/>
+            <label class="premium-seat" for="PB8">PB8</label>
+          </li><li class="seat premium">
+            <input name="selected_seat" type="checkbox" id="PB9" value="PB9"/>
+            <label class="premium-seat" for="PB9">PB9</label>
+          </li><li class="seat premium">
+            <input name="selected_seat" type="checkbox" id="PB10" value="PB10"/>
+            <label class="premium-seat" for="PB10">PB10</label>
+          </li>
+        </ol>
+      </li>
+      
+      
+    </ol>
+  </div>
+<div class="d-grid gap-2 col-4 mx-auto">
+  <button id="pay-btn" class="btn btn-danger btn-lg"  type="submit">Pay </button>
+
+</div>
+</form>
+
+
+
+
+<!-- Modal -->
+<!-- <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+      </div>
+      <div class="modal-body">
+        <section style="background-color: #eee;"  >
+          <div class="container py-5">
+            <div class="card">
+              <div class="card-body">
+                <div class="row d-flex justify-content-center pb-5">
+                  <div class="col-md-7 col-xl-5 mb-4 mb-md-0">
+                    <div class="py-4 d-flex flex-row">
+                     
+                    </div>
+                   
+                    <div class="d-flex pt-2">
+                      <div>
+                        
+                      </div>
+                      <div class="ms-auto">
+                        <p class="text-primary">
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div class="rounded d-flex" style="background-color: #f8f9fa;">
+                     
+                    </div>
+                    <hr />
+                    <div  >
+                      <div class="container p-0">
+                        <div class="card px-4">
+                            <p class="h8 py-3">Payment Details</p>
+                            <div class="row gx-3">
+                                <div class="col-12">
+                                    <div class="d-flex flex-column">
+                                        <p class="text mb-1">Person Name</p>
+                                        <input class="form-control mb-3" type="text" placeholder="Name" value="Barry Allen">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="d-flex flex-column">
+                                        <p class="text mb-1">Card Number</p>
+                                        <input class="form-control mb-3" type="text" placeholder="1234 5678 435678">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="d-flex flex-column">
+                                        <p class="text mb-1">Expiry</p>
+                                        <input class="form-control mb-3" type="text" placeholder="MM/YYYY">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="d-flex flex-column">
+                                        <p class="text mb-1">CVV/CVC</p>
+                                        <input class="form-control mb-3 pt-2 " type="password" placeholder="***" min="1" maxlength="3">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mx-auto mb-3" id="complete-payment-btn">
+                                        <button class="btn btn-success">pay</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                      </div>
+                  </div>
+        
+                  <div class="col-md-5 col-xl-4 offset-xl-1">
+                    <div class="py-4 d-flex justify-content-end">
+                      <h6><a href="{% url 'home' %}">Cancel and return to website</a></h6>
+                    </div>
+                    <div class="rounded d-flex flex-column p-2" style="background-color: #f8f9fa;">
+                      <div class="p-2 me-3">
+                        <h4>Order Recap</h4>
+                      </div>
+                      <div class="p-2 d-flex">
+                        <div class="col-8">book date</div>
+                        <div class="ms-auto">$186.76</div>
+                      </div>
+                      <div class="p-2 d-flex">
+                        <div class="col-8">show time</div>
+                        <div class="ms-auto">$0.00</div>
+                      </div>
+                      <div class="p-2 d-flex">
+                        <div class="col-8">seat category</div>
+                        <div class="ms-auto">+ $0.00</div>
+                      </div>
+                      <div class="p-2 d-flex">
+                        <div class="col-8">seat number</div>
+                        <div >+ $40.00</div>
+                      </div>
+                      <div class="border-top px-2 mx-2"></div>
+                      
+                      
+                      <div class="border-top px-2 mx-2"></div>
+                      <div class="p-2 d-flex pt-3">
+                        
+                      
+                      <div class="border-top px-2 mx-2"></div>
+                      <div class="p-2 d-flex pt-3">
+                        <div class="col-8"><b>Total</b></div>
+                        <div class="ms-auto"><b class="text-success">$85.00</b></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancel</button>
+        
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+
+
+<!-- payment card  -->
+
+
+
+
+  
+</body>
+</html>

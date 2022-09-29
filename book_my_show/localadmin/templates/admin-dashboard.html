@@ -1,0 +1,41 @@
+{% extends 'admin-master.html' %}
+{% load static %}
+{% block content %}
+<div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+            <th></th>
+              <th scope="col">movie name</th>
+              <th scope="col">duaration</th>
+              <th scope="col">relaese date</th>
+              <th scope="col">languages</th>
+              <th scope="col">genre</th>
+              <th scope="col">about</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if data %}
+             {% for d in data %}
+            <tr>
+                <td><img
+                    src="{{d.Movie_poster.url}}"
+                    alt=""
+                    style="width: 45px; height: 45px"
+                    
+                    /></td>
+              <td >{{d.Movie_name}}</td>
+              <td>{{d.Movie_duaration}}</td>
+              <td>{{d.Release_date}}</td>
+              <td>{{d.Languages}}</td>
+              <td>{{d.Gener}}</td>
+              <td>{{d.About_movie}}</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+            
+          </tbody>
+    </table>
+
+</div>
+{% endblock %}

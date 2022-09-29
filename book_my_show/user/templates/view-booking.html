@@ -1,0 +1,42 @@
+{% extends 'user-master.html' %}
+{% load static %}
+{% block content %}
+<div>
+    <table class="table align-middle mb-0 bg-white table-hover">
+        <thead class="bg-light">
+          <tr>
+            <th>Movie Name</th>
+            <th>booking date</th>
+            <th>booking time</th>
+            <th>seat numbers</th>
+            <th>status</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% if data %}
+            {% for d in data %}
+          
+          <tr>
+            <td>
+              {{d.Movie_name}}
+            </td>
+            <td>
+              {{d.Booking_date}}
+              
+            </td>
+            <td>
+                {{d.Booking_time}}
+              
+            </td>
+            <td>{{d.Selected_seats }}</td>
+            <td>
+              watched
+            </td>
+          </tr>
+          {% endfor %}
+          {% endif %}
+        </tbody>
+      </table>
+
+</div>
+{% endblock %}
